@@ -1,3 +1,4 @@
+// Interrupt test for 20m sec interrupt simulate.
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
