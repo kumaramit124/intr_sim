@@ -1,8 +1,7 @@
 /*
  * sim_interrupt.c -- the module increment the counter every defined time
  *
- * Copyright (C) 2001 Alessandro Rubini and Jonathan Corbet
- * Copyright (C) 2001 O'Reilly & Associates
+ * Copyright (C) 2012 -2019 Amit Kumar
  *
  * The source code in this file can be freely used, adapted,
  * and redistributed in source or binary form, so long as an
