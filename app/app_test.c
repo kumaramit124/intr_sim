@@ -15,6 +15,7 @@ void longrun_test_frm_INT(void ) ;
 
 void longrun_test_frm_INT()
 {
+	printf("Just added code to test the whitespace in git\n");
         int fd;
         ssize_t rc;
         int i = 0 ;
@@ -25,7 +26,11 @@ void longrun_test_frm_INT()
                 printf("File Open Error !!! (%d): %m\n", errno);
                 return ;
         }
+	printf("Device is Open Succesfully!!!\n");
         memset(&interrupt_info_frm, 0, sizeof(interrupt_info_frm));
+        printf("start a loop to read the status!!!\n");
+
+       ptintf("testing\n");  
         while(1)
         {
                 i++;
