@@ -28,7 +28,6 @@
 #include "sim_intr.h"
 
 MODULE_LICENSE("Dual BSD/GPL");
-//MODULE_AUTHER("AMITK");
 #define MAXCOUNT 100000
 
 #define GET_SIM_INTR_INTERVAL_JIFFIES    (HZ / 5)
@@ -41,34 +40,23 @@ ssize_t sim_intr_read(struct file *, char *, size_t, loff_t *);
 
 DEFINE_TIMER(sim_intr_avg_timer, sim_intr_avg_timer_hdlr, 0, 0);
 
-/***********KUMAR**********/
 static DECLARE_WAIT_QUEUE_HEAD(wq);
 static int flag = 0;
-/*************KUMAR********/
 
 static void sim_intr_avg_timer_hdlr(unsigned long arg)
 {
-	
-	//printk("Inside the TIMER Hdlr!!!!!!!\n");
-/***********KUMAR***********/
         printk(KERN_DEBUG "process %i (%s) awakening the readers...\n",
                         current->pid, current->comm);
         flag = 1;
         wake_up_interruptible(&wq);
-/**********KUMAR***********/
 
-	//frm_run_count++;
 	frm_run_count +=25;
 	if(frm_run_count > MAXCOUNT)
 	{
 		frm_run_count =0;
 	}
-       // mod_timer(&sim_intr_avg_timer,
-         //               sim_intr_avg_timer.expires + GET_SIM_INTR_INTERVAL_JIFFIES);
 	
 }
-
-//ssize_t sim_intr_read (struct file *filp, char *ubuf, size_t size, loff_t *off)
 
 ssize_t
 sim_intr_read(
@@ -79,12 +67,9 @@ sim_intr_read(
 {
 	printk ("In sim_intr_read!!!!!!\n");
 	intfrm_info interrupt_info;
-        //interrupt_info.intfrm_run_count = 0;
 
-/*********p**KUMAR**************/
         sim_intr_avg_timer.expires = jiffies + GET_SIM_INTR_INTERVAL_JIFFIES;
         add_timer(&sim_intr_avg_timer);
-/*********************KUMAR*****/
         interrupt_info.intfrm_cpld_info = 0;
 
 	interrupt_info.intfrm_run_count = frm_run_count;
